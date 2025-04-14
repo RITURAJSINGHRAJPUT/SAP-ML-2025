@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Agriculture Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Defer script execution -->
+    <script type="module" src="dashboard.js" defer></script> 
+</head>
+<body class="light-mode"> <!-- Default to light mode -->
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-leaf sidebar-logo"></i> <!-- Logo Icon -->
+            <h2>Farm Panel</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="#analytics"><i class="fas fa-chart-line"></i> Analytics</a> 
+            <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+            <!-- Add more links as needed -->
+        </nav>
+        <div class="sidebar-footer">
+            <button id="theme-toggle" class="theme-toggle-btn">
+                <i class="fas fa-moon"></i> <!-- Moon icon for dark mode -->
+                <span>Toggle Theme</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <header class="content-header">
+            <!-- Search bar or other header elements can go here -->
+            <div class="user-info">
+                <span id="username">Welcome, User</span>
+                <button id="logout" class="logout-btn">Logout</button>
+            </div>
+        </header>
+        
+        <main>
+            <!-- View Containers -->
+            <div id="dashboard-view">
+                <h2 class="content-title">Agriculture Dashboard</h2>
+                <!-- Sensor Data Cards -->
+                <div class="cards">
+                    <div class="card temperature-card">
+                        <i class="fas fa-thermometer-half card-icon"></i>
+                        <div>
+                            <h3>Temperature:</h3> 
+                            <p id="temperature">-- °C</p>
+                        </div>
+                    </div>
+                    <div class="card humidity-card">
+                        <i class="fas fa-tint card-icon"></i>
+                        <div>
+                            <h3>Humidity:</h3> 
+                            <p id="humidity">-- %</p>
+                        </div>
+                    </div>
+                    <div class="card soil-moisture-card">
+                        <i class="fas fa-seedling card-icon"></i>
+                        <div>
+                            <h3>Soil Moisture:</h3> 
+                            <p id="soil-moisture">-- %</p>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Charts -->
+                <div class="charts-container">
+                    <div class="chart-wrapper">
+                        <canvas id="tempChart"></canvas>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="soilMoistureChart"></canvas>
+                    </div>
+                </div>
+        
+                <!-- Irrigation Schedule -->
+                <h2 class="content-title">Next 5 Irrigation Schedules</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Time</th>
+                                <th>Soil Moisture (%)</th>
+                                <th>Temperature (°C)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-body">
+                            <tr><td colspan="4">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+        
+                <!-- Motor Control -->
+                <div class="motor-control">
+                    <button id="motor-on" class="motor-btn on">Turn Motor ON</button>
+                    <button id="motor-off" class="motor-btn off">Turn Motor OFF</button>
+                </div>
+            </div>
+
+            <div id="analytics-view" class="view-hidden">
+                <h2 class="content-title">Analytics</h2>
+                <div class="placeholder-content card">
+                    <i class="fas fa-chart-pie card-icon" style="color: #9c27b0;"></i>
+                    <div>
+                        <h3>Advanced Analytics</h3>
+                        <p>More detailed charts and data analysis will be displayed here.</p>
+                        <canvas id="humidityChart" style="margin-top: 20px;"></canvas> 
+                    </div>
+                </div>
+                <!-- Add more analytic components -->
+            </div>
+
+            <div id="settings-view" class="view-hidden">
+                <h2 class="content-title">Settings</h2>
+                <div class="settings-section card">
+                    <h3><i class="fas fa-palette"></i> Appearance</h3>
+                    <p>Adjust the look and feel of your dashboard.</p>
+                    <div class="setting-item">
+                        <span>Theme:</span>
+                        <!-- Theme toggle is already in the sidebar -->
+                        <span class="current-theme-display">Light / Dark (Use toggle in sidebar)</span>
+                    </div>
+                </div>
+                 <div class="settings-section card">
+                    <h3><i class="fas fa-user-circle"></i> Profile</h3>
+                     <div class="setting-item">
+                        <span>Username:</span>
+                        <span id="profile-username">Loading...</span>
+                    </div>
+                    <!-- Add more settings here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
